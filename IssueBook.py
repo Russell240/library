@@ -11,7 +11,7 @@ con = pymysql.connect(host="localhost",user="root",password=mypass,database=myda
 cur = con.cursor()
 
 # Enter Table Names here
-issueTable = "books_issued" 
+issueTable = "issue_books" 
 bookTable = "books"
     
 #List To store all Book IDs

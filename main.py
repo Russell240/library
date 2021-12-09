@@ -16,7 +16,7 @@ cur = con.cursor()
 
 root = Tk()
 root.title("Library")
-root.minsize(width=400,height=400)
+root.minsize(width=500,height=500)
 root.geometry("650x550")
 
 # Take n greater than 0.25 and less than 5
