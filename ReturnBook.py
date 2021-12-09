@@ -11,7 +11,7 @@ con = pymysql.connect(host="localhost",user="root",password=mypass,database=myda
 cur = con.cursor()
 
 # Enter Table Names here
-issueTable = "books_issued" #Issue Table
+issueTable = "issue_books" #Issue Table
 bookTable = "books" #Book Table
 
 
@@ -23,20 +23,19 @@ def returnn():
     
     bid = bookInfo1.get()
 
-    extractBid = "select bid from "+issueTable
+    extractBookId = "select bid from "+issueTable
     try:
-        cur.execute(extractBid)
+        cur.execute(extractBookId)
         con.commit()
         for i in cur:
             allBid.append(i[0])
         
         if bid in allBid:
             checkAvail = "select status from "+bookTable+" where bid = '"+bid+"'"
+            
             cur.execute(checkAvail)
             con.commit()
-            for i in cur:
-                check = i[0]
-                
+            check= i[0]
             if check == 'issued':
                 status = True
             else:
@@ -48,11 +47,11 @@ def returnn():
         messagebox.showinfo("Error","Can't fetch Book IDs")
     
     
-    issueSql = "delete from "+issueTable+" where bid = '"+bid+"'"
+    issueSql = "delete from "+issueTable+" where BID = '"+bid+"'"
   
     print(bid in allBid)
     print(status)
-    updateStatus = "update "+bookTable+" set status = 'avail' where bid = '"+bid+"'"
+    updateStatus = "update "+bookTable+" set status = 'available' where bid = '"+bid+"'"
     try:
         if bid in allBid and status == True:
             cur.execute(issueSql)

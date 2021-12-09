@@ -54,7 +54,7 @@ def addBook():
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)
     headingFrame1.place(relx=0.35,rely=0.1,relwidth=0.5,relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Add Books", bg='white', fg='black', font=('Courier',15))
+    headingLabel = Label(headingFrame1, text="Add Books", bg='white', fg='black', font=('Courier',17))
     headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
 
 
