@@ -23,7 +23,7 @@ def returnn():
     
     bid = bookInfo1.get()
 
-    extractBookId = "select bid from "+issueTable
+    extractBookId = "select BID from "+issueTable
     try:
         cur.execute(extractBookId)
         con.commit()
@@ -31,9 +31,8 @@ def returnn():
             allBid.append(i[0])
         
         if bid in allBid:
-            checkAvail = "select status from "+bookTable+" where bid = '"+bid+"'"
-            
-            cur.execute(checkAvail)
+            checkAvailable = "select status from "+bookTable+" where bid = '"+bid+"'"
+            cur.execute(checkAvailable)
             con.commit()
             check= i[0]
             if check == 'issued':
@@ -80,10 +79,9 @@ def returnBook():
     root.minsize(width=400,height=400)
     root.geometry("600x500")
 
-    
     Canvas1 = Canvas(root)
     
-    Canvas1.config(bg="#006B38")
+    Canvas1.config(bg="#3366ff")
     Canvas1.pack(expand=True,fill=BOTH)
         
     headingFrame1 = Frame(root,bg="#FFBB00",bd=5)

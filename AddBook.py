@@ -10,14 +10,21 @@ def bookRegister():
     author = bookInfo3.get()
     status = bookInfo4.get()
     status = status.lower()
-    
-    insertBooks = "insert into "+bookTable+" values('"+bid+"','"+title+"','"+author+"','"+status+"')"
-    try:
-        cur.execute(insertBooks)
-        con.commit()
-        messagebox.showinfo('Success',"Book added successfully")
-    except:
-        messagebox.showinfo("Error","Can't add data into Database")
+
+    checkIdExists= "select bid from" +bookTable+" where bid = '"+bid +"'"
+    cur.execute(checkIdExists)
+    cur.fetchone()
+    if checkIdExists:
+        messagebox.showinfo(" Book Id already exists")
+    else:
+
+        insertBooks = "insert into "+bookTable+" values('"+bid+"','"+title+"','"+author+"','"+status+"')"
+        try:
+            cur.execute(insertBooks)
+            con.commit()
+            messagebox.showinfo('Success',"Book added successfully")
+        except:
+            messagebox.showinfo("Error","Can't add data into Database")
     
     print(bid)
     print(title)
@@ -83,7 +90,7 @@ def addBook():
     bookInfo3.place(relx=0.3,rely=0.50, relwidth=0.62, relheight=0.08)
         
     # Book Status
-    lb4 = Label(labelFrame,text="Status(Available/issued) : ", bg='white', fg='black')
+    lb4 = Label(labelFrame,text="Status(available/issued) : ", bg='white', fg='black')
     lb4.place(relx=0.05,rely=0.65, relheight=0.08)
         
     bookInfo4 = Entry(labelFrame)
